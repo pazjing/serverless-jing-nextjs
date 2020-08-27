@@ -1,0 +1,26 @@
+
+service: ${self:custom.name}
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-southeast-2
+
+plugins:
+  - serverless-nextjs-plugin
+
+custom:
+  name: jing-nextjs
+  serverless-nextjs:
+    assetsBucketName: 'jing-nextjs-assets-${self:provider.stage}'
+ 
+package:
+  # exclude everything
+  # page handlers are automatically included by the plugin
+  exclude:
+    - ./**
+
+
+
+
